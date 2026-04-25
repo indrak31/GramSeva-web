@@ -1,0 +1,21 @@
+﻿{
+  "nav.jobs": "வேலைகள்",
+  "nav.profile": "சுயவிவரம்",
+  "nav.courses": "பாடங்கள்",
+  "nav.ai": "கிராம் ஏஐ",
+  "dashboard.welcome": "மீண்டும் வரவேற்கிறோம், {{name}}!",
+  "dashboard.applyNow": "இப்போது விண்ணப்பிக்கவும்",
+  "dashboard.postedJobs": "பதிவு செய்யப்பட்ட வேலைகள்",
+  "jobs.title": "கிடைக்கும் வேலைகள்",
+  "jobs.apply": "விண்ணப்பிக்கவும்",
+  "jobs.location": "இடம்",
+  "jobs.salary": "சம்பளம்",
+  "profile.edit": "சுயவிவரம் திருத்து",
+  "profile.save": "மாற்றங்களை சேமிக்கவும்",
+  "ai.placeholder": "கிராம் ஏஐயிடம் ஏதாவது கேளுங்கள்...",
+  "ai.title": "கிராம் ஏஐ உதவியாளர்",
+  "docs.upload": "ஆவணத்தை பதிவேற்றவும்",
+  "docs.verified": "சரிபார்க்கப்பட்டது",
+  "auth.sendOtp": "ஓடிபி அனுப்பு",
+  "auth.verify": "சரிபார்"
+}

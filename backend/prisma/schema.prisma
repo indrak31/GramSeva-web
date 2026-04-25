@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                     String              @id @default(uuid())
+  mobile                 String              @unique
+  passwordHash           String
+  role                   Role
+  name                   String
+  state                  String
+  district               String
+  village                String              @default("")
+  language               String              @default("en")
+  needsLanguageSelection Boolean             @default(true)
+  hasUploadedDocuments   Boolean             @default(false)
+  isVerified             Boolean             @default(false)
+  isDocVerified          Boolean             @default(false)
+  isSuspended            Boolean             @default(false)
+  skills                 String[]
+  companyName            String?
+  businessType           String?
+  gstNumber              String?
+  website                String?
+  createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+
+  profile                Profile?
+  documents              Document[]
+  jobsPosted             Job[]               @relation("EmployerJobs")
+  applications           Application[]       @relation("WorkerApplications")
+  givenRatings           Rating[]            @relation("RatingGiver")
+  receivedRatings        Rating[]            @relation("RatingReceiver")
+  enrollments            Enrollment[]
+  aiLogs                 AIConversationLog[]
+}
+
+model Profile {
+  id           String  @id @default(uuid())
+  userId       String  @unique
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  avatarUrl    String?
+  bio          String? @db.VarChar(250)
+  rating       Float   @default(0)
+  totalRatings Int     @default(0)
+}
+
+model OTP {
+  id        String   @id @default(uuid())
+  mobile    String
+  code      String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([mobile])
+}
+
+model Job {
+  id              String      @id @default(uuid())
+  employerId      String
+  employer        User        @relation("EmployerJobs", fields: [employerId], references: [id], onDelete: Cascade)
+  title           String
+  category        String
+  description     String      @db.Text
+  state           String
+  district        String
+  village         String      @default("")
+  vacancies       Int         @default(1)
+  salary          Float
+  salaryUnit      String
+  requiredSkills  String[]
+  benefits        String[]
+  experienceLevel String      @default("none")
+  startDate       DateTime?
+  endDate         DateTime?
+  deadline        DateTime
+  status          JobStatus   @default(ACTIVE)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  applications    Application[]
+  ratings         Rating[]
+}
+
+model Application {
+  id         String            @id @default(uuid())
+  jobId      String
+  job        Job               @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  workerId   String
+  worker     User              @relation("WorkerApplications", fields: [workerId], references: [id], onDelete: Cascade)
+  status     ApplicationStatus @default(PENDING)
+  appliedAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  @@unique([jobId, workerId])
+}
+
+model Document {
+  id              String       @id @default(uuid())
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type            DocumentType
+  fileUrl         String
+  fileName        String
+  fileSize        Int
+  status          VerifyStatus @default(PENDING)
+  rejectionReason String?
+  uploadedAt      DateTime     @default(now())
+  verifiedAt      DateTime?
+}
+
+model Course {
+  id           String       @id @default(uuid())
+  title        String
+  description  String       @db.Text
+  language     String
+  duration     String
+  level        String
+  thumbnailUrl String?
+  videoUrl     String?
+  category     String
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+
+  enrollments  Enrollment[]
+}
+
+model Enrollment {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progress    Int      @default(0)
+  completedAt DateTime?
+  enrolledAt  DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model Rating {
+  id         String   @id @default(uuid())
+  giverId    String
+  giver      User     @relation("RatingGiver", fields: [giverId], references: [id], onDelete: Cascade)
+  receiverId String
+  receiver   User     @relation("RatingReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  jobId      String?
+  job        Job?     @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  stars      Int
+  review     String?  @db.VarChar(500)
+  tags       String[]
+  createdAt  DateTime @default(now())
+
+  @@unique([giverId, receiverId, jobId])
+}
+
+model AIConversationLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  message   String   @db.Text
+  response  String   @db.Text
+  role      String   @default("assistant")
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  WORKER
+  EMPLOYER
+  ADMIN
+}
+
+enum JobStatus {
+  ACTIVE
+  PAUSED
+  CLOSED
+  DRAFT
+}
+
+enum ApplicationStatus {
+  PENDING
+  SHORTLISTED
+  HIRED
+  REJECTED
+  WITHDRAWN
+}
+
+enum DocumentType {
+  AADHAAR
+  PAN
+  DRIVING
+  OTHER
+}
+
+enum VerifyStatus {
+  PENDING
+  UNDER_REVIEW
+  VERIFIED
+  REJECTED
+}
+
+

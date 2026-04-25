@@ -1,0 +1,21 @@
+﻿{
+  "nav.jobs": "नोकऱ्या",
+  "nav.profile": "प्रोफाइल",
+  "nav.courses": "कोर्स",
+  "nav.ai": "ग्राम एआय",
+  "dashboard.welcome": "पुन्हा स्वागत आहे, {{name}}!",
+  "dashboard.applyNow": "आता अर्ज करा",
+  "dashboard.postedJobs": "पोस्ट केलेल्या नोकऱ्या",
+  "jobs.title": "उपलब्ध नोकऱ्या",
+  "jobs.apply": "अर्ज करा",
+  "jobs.location": "स्थान",
+  "jobs.salary": "पगार",
+  "profile.edit": "प्रोफाइल संपादित करा",
+  "profile.save": "बदल जतन करा",
+  "ai.placeholder": "ग्राम एआयला काही विचारा...",
+  "ai.title": "ग्राम एआय सहाय्यक",
+  "docs.upload": "कागदपत्र अपलोड करा",
+  "docs.verified": "पडताळलेले",
+  "auth.sendOtp": "ओटीपी पाठवा",
+  "auth.verify": "पडताळा"
+}

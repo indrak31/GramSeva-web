@@ -1,0 +1,21 @@
+﻿{
+  "nav.jobs": "ਨੌਕਰੀਆਂ",
+  "nav.profile": "ਪਰੋਫਾਈਲ",
+  "nav.courses": "ਕੋਰਸ",
+  "nav.ai": "ਗ੍ਰਾਮ ਏਆਈ",
+  "dashboard.welcome": "ਮੁੜ ਸੁਆਗਤ ਹੈ, {{name}}!",
+  "dashboard.applyNow": "ਹੁਣੇ ਅਰਜ਼ੀ ਦਿਓ",
+  "dashboard.postedJobs": "ਪੋਸਟ ਕੀਤੀਆਂ ਨੌਕਰੀਆਂ",
+  "jobs.title": "ਉਪਲਬਧ ਨੌਕਰੀਆਂ",
+  "jobs.apply": "ਅਰਜ਼ੀ ਦਿਓ",
+  "jobs.location": "ਟਿਕਾਣਾ",
+  "jobs.salary": "ਤਨਖਾਹ",
+  "profile.edit": "ਪਰੋਫਾਈਲ ਸੋਧੋ",
+  "profile.save": "ਬਦਲਾਅ ਸੰਭਾਲੋ",
+  "ai.placeholder": "ਗ੍ਰਾਮ ਏਆਈ ਨੂੰ ਕੁਝ ਪੁੱਛੋ...",
+  "ai.title": "ਗ੍ਰਾਮ ਏਆਈ ਸਹਾਇਕ",
+  "docs.upload": "ਦਸਤਾਵੇਜ਼ ਅੱਪਲੋਡ ਕਰੋ",
+  "docs.verified": "ਪੜਤਾਲ ਕੀਤਾ",
+  "auth.sendOtp": "ਓਟਿਪੀ ਭੇਜੋ",
+  "auth.verify": "ਪੜਤਾਲ ਕਰੋ"
+}
