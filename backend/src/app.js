@@ -15,10 +15,11 @@ import liveRoutes from "./routes/live.routes.js";
 import { generalLimiter } from "./middleware/rateLimit.middleware.js";
 
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN?.split(",") || ["http://localhost:5173"],
+    origin: process.env.CORS_ORIGIN?.split(",") || ["http://localhost:4001"],
     credentials: true,
   }),
 );

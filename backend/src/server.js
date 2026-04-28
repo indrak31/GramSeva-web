@@ -4,8 +4,20 @@ import { connectDatabase } from "./config/database.js";
 
 const port = Number(process.env.PORT) || 5000;
 
-await connectDatabase();
+const startServer = async () => {
+  try {
+    console.log("Starting server...");
 
-app.listen(port, () => {
-  console.log(`GramSeva backend running on port ${port}`);
-});
+    //await connectDatabase();
+    console.log("Database connected");
+
+    app.listen(port, () => {
+      console.log(`GramSeva backend running on port ${port}`);
+    });
+
+  } catch (error) {
+    console.error("Server failed to start:", error);
+  }
+};
+
+startServer();
